@@ -1,0 +1,50 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio 2019 cache/options directory
+.vs/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+/packages/
+
+# Dotnet secret files
+secrets.json
+user-secrets/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.swp
+*.bak
