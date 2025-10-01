@@ -1,0 +1,12 @@
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.AssemblyInfoInputs.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.AssemblyInfo.cs
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.csproj.CoreCompileInputs.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.csproj.AssemblyReference.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/bin/Debug/net8.0/TaskMaster.Domain.deps.json
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/bin/Debug/net8.0/TaskMaster.Domain.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/bin/Debug/net8.0/TaskMaster.Domain.pdb
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/refint/TaskMaster.Domain.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/TaskMaster.Domain.pdb
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/Debug/net8.0/ref/TaskMaster.Domain.dll

@@ -1,0 +1,257 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Presentation/TaskMaster.Presentation.csproj": {}
+  },
+  "projects": {
+    "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj",
+        "projectName": "TaskMaster.Application",
+        "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj",
+        "packagesPath": "/home/xxxxxxx/.nuget/packages/",
+        "outputPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/xxxxxxx/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj": {
+                "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj",
+        "projectName": "TaskMaster.Domain",
+        "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj",
+        "packagesPath": "/home/xxxxxxx/.nuget/packages/",
+        "outputPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/xxxxxxx/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/TaskMaster.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/TaskMaster.Infrastructure.csproj",
+        "projectName": "TaskMaster.Infrastructure",
+        "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/TaskMaster.Infrastructure.csproj",
+        "packagesPath": "/home/xxxxxxx/.nuget/packages/",
+        "outputPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/xxxxxxx/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj": {
+                "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj"
+              },
+              "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj": {
+                "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Domain/TaskMaster.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Presentation/TaskMaster.Presentation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Presentation/TaskMaster.Presentation.csproj",
+        "projectName": "TaskMaster.Presentation",
+        "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Presentation/TaskMaster.Presentation.csproj",
+        "packagesPath": "/home/xxxxxxx/.nuget/packages/",
+        "outputPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Presentation/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/xxxxxxx/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj": {
+                "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/TaskMaster.Application.csproj"
+              },
+              "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/TaskMaster.Infrastructure.csproj": {
+                "projectPath": "/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Infrastructure/TaskMaster.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.20, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

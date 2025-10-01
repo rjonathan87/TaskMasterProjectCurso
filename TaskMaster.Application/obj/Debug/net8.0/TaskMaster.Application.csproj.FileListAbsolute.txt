@@ -1,0 +1,15 @@
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/bin/Debug/net8.0/TaskMaster.Application.deps.json
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/bin/Debug/net8.0/TaskMaster.Application.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/bin/Debug/net8.0/TaskMaster.Application.pdb
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/bin/Debug/net8.0/TaskMaster.Domain.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/bin/Debug/net8.0/TaskMaster.Domain.pdb
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.csproj.AssemblyReference.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.AssemblyInfoInputs.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.AssemblyInfo.cs
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.csproj.CoreCompileInputs.cache
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.csproj.CopyComplete
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/refint/TaskMaster.Application.dll
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/TaskMaster.Application.pdb
+/home/xxxxxxx/Documentos/Proyects/Cursos/ProgramacionAvanzadaASPNET/curso/TaskMasterProjectCurso/TaskMaster.Application/obj/Debug/net8.0/ref/TaskMaster.Application.dll

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/TaskMaster.Presentation.props" />
+</Project>
