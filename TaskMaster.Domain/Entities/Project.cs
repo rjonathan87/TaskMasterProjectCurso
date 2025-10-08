@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TaskMaster.Domain.Entities
 {
-  public class Projects
+  public class Project
   {
     public Guid Id { get; set; }
     public string? Name { get; set; }

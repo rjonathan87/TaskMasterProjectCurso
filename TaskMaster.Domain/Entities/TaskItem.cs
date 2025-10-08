@@ -9,7 +9,7 @@ namespace TaskMaster.Domain.Entities
     public DateTime CreatedAt { get; set; }
     public DateTime? DueDate { get; set; }
     public Guid ProjectId { get; set; }
-    public Projects? Project { get; set; }
+    public Project? Project { get; set; }
     public Guid? AssignedToId { get; set; }
     public User? AssignedTo { get; set; }
   }

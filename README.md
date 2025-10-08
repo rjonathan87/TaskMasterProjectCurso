@@ -24,8 +24,9 @@ Este proyecto no incluye base de datos, autenticación ni lógica de negocio ava
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd <RUTA_DEL_REPOSITORIO>/curso/TaskMasterProjectCurso
+git --version
+git clone https://github.com/rjonathan87/TaskMasterProjectCurso.git
+cd https://github.com/rjonathan87/TaskMasterProjectCurso.git/curso/TaskMasterProjectCurso
 ```
 
 ### 2. Restaurar Dependencias
