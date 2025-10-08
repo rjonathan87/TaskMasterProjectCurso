@@ -9,7 +9,7 @@ namespace TaskMaster.Presentation.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    //[Authorize] // Se deja comentado como en el lab 3
+    [Authorize] // Se deja comentado como en el lab 3
     public class TasksController : ControllerBase
     {
         private readonly CreateTaskCommandHandler _createTaskHandler;

@@ -12,6 +12,12 @@ using TaskMaster.Infrastructure.Repositories;
 using TaskMaster.Infrastructure.UnitOfWork;
 using Microsoft.OpenApi.Models;
 
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using TaskMaster.Application.Services;
+using TaskMaster.Infrastructure.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -80,6 +86,7 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
 // --- Registro de Repositorios y Unit of Work (del Módulo 2) ---
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 // --- Registro de Handlers de Casos de Uso ---
 builder.Services.AddScoped<CreateTaskCommandHandler>();
@@ -87,6 +94,25 @@ builder.Services.AddScoped<GetTaskByIdQueryHandler>();
 builder.Services.AddScoped<UpdateTaskCommandHandler>();
 builder.Services.AddScoped<DeleteTaskCommandHandler>();
 builder.Services.AddScoped<GetAllTasksQueryHandler>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+    };
+});
 
 var app = builder.Build();
 
