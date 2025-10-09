@@ -24,6 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddMemoryCache();
+
 // --- Configuración de AutoMapper ---
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
