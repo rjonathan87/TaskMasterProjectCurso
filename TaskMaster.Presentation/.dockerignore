@@ -1,0 +1,56 @@
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.vs
+**/.vscode
+**/.idea
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/bin
+**/obj
+**/node_modules
+**/logs
+
+# Dockerfile
+Dockerfile
+Dockerfile.*
+
+# Visual Studio Code
+.vscode
+
+# Visual Studio
+.vs/
+*.suo
+*.bak
+*.user
+*.ish
+*.log
+*.ilk
+*.pdb
+*.opendb
+*.VC.db
+
+# NuGet
+.nuget/
+*.nupkg
+*.snupkg
+
+# Resharper
+*.dotSettings
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Linux
+*.swp
+
+# Windows
+Thumbs.db

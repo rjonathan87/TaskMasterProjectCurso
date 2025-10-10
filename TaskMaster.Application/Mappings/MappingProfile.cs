@@ -11,6 +11,8 @@ namespace TaskMaster.Application.Mappings
             CreateMap<TaskItem, TaskItemDto>().ReverseMap();
             CreateMap<CreateTaskRequest, TaskItem>();
             CreateMap<UpdateTaskRequest, TaskItem>();
+            CreateMap<Project, ProjectDto>().ReverseMap();
+            CreateMap<CreateProjectRequest, Project>();
         }
     }
 }

@@ -1,0 +1,34 @@
+name: CI TaskMaster Pro
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore TaskMaster.sln
+
+    - name: Build
+      run: dotnet build TaskMaster.sln --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test TaskMaster.sln --no-build --configuration Release --verbosity normal
+
+    # Opcional: Construir la imagen Docker (sin push a registro por ahora)
+    - name: Build Docker image
+      run: docker build -t taskmaster-api:latest ./TaskMaster.Presentation

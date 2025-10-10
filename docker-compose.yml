@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: TaskMasterDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: t2i86t7D9X
+    ports:
+      - "5434:5432"
+    volumes:
+      - taskmaster_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5067:80"
+    environment:
+      ASPNETCORE_URLS: "http://+:80"
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=TaskMasterDb;Username=postgres;Password=t2i86t7D9X"
+      Jwt__Key: "EstaEsUnaClaveSuperSecretaYMuyLargaParaJWTQueDebeTenerAl menos32Caracteres"
+      Jwt__Issuer: "TaskMasterAPI"
+      Jwt__Audience: "TaskMasterUsers"
+      Jwt__ExpireMinutes: "60"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: t2i86t7D9X
+      POSTGRES_DB: TaskMasterDb
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  taskmaster_db_data:

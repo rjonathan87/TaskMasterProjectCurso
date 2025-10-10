@@ -46,3 +46,15 @@ dotnet run --project TaskMaster.Presentation
 ```
 
 La API se iniciará y podrás ver las URLs en la consola (ej. `https://localhost:7202` y `http://localhost:5067`). Por defecto, puedes acceder a la documentación de Swagger en la URL de HTTPS, por ejemplo: `https://localhost:7202/swagger`.
+
+
+## Insertar Data en Tasks
+```
+  {
+    "title": "string 1",
+    "description": "string 1",
+    "projectId": "0b78d345-d851-420b-ac9b-709ff1e966fd",
+    "assignedToId": "e9a115ab-87d7-4264-9020-4daa0d842f40",
+    "dueDate": "2025-10-10T04:40:18.301Z"
+  }
+```
