@@ -20,8 +20,6 @@ namespace TaskMaster.Application.Features
 
         public async Task<TaskItem> Handle(CreateTaskRequest command)
         {
-            
-
             var task = new TaskItem
             {
                 Id = Guid.NewGuid(),

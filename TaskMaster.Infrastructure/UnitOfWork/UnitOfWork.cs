@@ -12,9 +12,9 @@ namespace TaskMaster.Infrastructure.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        private IGenericRepository<User> _users;
-        private IGenericRepository<Project> _projects;
-        private IGenericRepository<TaskItem> _taskItems;
+        private IGenericRepository<User>? _users;
+        private IGenericRepository<Project>? _projects;
+        private IGenericRepository<TaskItem>? _taskItems;
 
         public UnitOfWork(ApplicationDbContext context)
         {
