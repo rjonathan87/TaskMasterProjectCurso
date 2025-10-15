@@ -51,7 +51,6 @@ logs/
 
 # Documentación
 docs/
-/TaskMaster.Presentation
 /.github/workflows
 /.dockerignore
 /docker-compose.yml
