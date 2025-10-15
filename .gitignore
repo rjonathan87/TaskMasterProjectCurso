@@ -51,3 +51,10 @@ logs/
 
 # Documentación
 docs/
+/.github/workflows
+/.dockerignore
+/docker-compose.yml
+/Dockerfile
+/.gitignore
+/.gitignore
+/.gitignore

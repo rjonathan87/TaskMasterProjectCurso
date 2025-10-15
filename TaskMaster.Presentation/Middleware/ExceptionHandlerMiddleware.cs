@@ -1,4 +1,3 @@
-﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Text.Json;
 
@@ -8,13 +7,11 @@ namespace TaskMaster.Presentation.Middleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlerMiddleware> _logger;
-        private readonly IHostEnvironment _env;
 
-        public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger, IHostEnvironment env)
+        public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
         {
             _next = next;
             _logger = logger;
-            _env = env;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -25,27 +22,24 @@ namespace TaskMaster.Presentation.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió una excepción no manejada: {Message}", ex.Message);
+                _logger.LogError(ex, "An unhandled exception has occurred.");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            context.Response.ContentType = "application/problem+json";
+            context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            // Creamos un objeto ProblemDetails estándar
-            var problemDetails = new ProblemDetails
+            var response = new
             {
-                Status = context.Response.StatusCode,
-                Title = "Se produjo un error interno en el servidor.",
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
-                // Incluimos el detalle del error solo en desarrollo por seguridad
-                Detail = _env.IsDevelopment() ? exception.ToString() : "Contacte a soporte."
+                StatusCode = context.Response.StatusCode,
+                Message = "An unexpected error occurred.",
+                Detailed = exception.Message
             };
 
-            return context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
+            return context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }
 }
