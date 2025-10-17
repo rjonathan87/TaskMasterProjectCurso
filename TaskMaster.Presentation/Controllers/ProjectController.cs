@@ -8,6 +8,11 @@ using System.Security.Claims;
 
 namespace TaskMaster.Presentation.Controllers
 {
+    /// <summary>
+    /// Provides endpoints for managing projects, including creating new projects and retrieving project details.
+    /// </summary>
+    /// <remarks>This controller is part of the API version 1.0 and requires authentication.  It allows users
+    /// to create new projects and retrieve project details by ID.</remarks>
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
@@ -23,6 +28,11 @@ namespace TaskMaster.Presentation.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Aquí podemos añadir un nuevo proyecto
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<ProjectDto>> Create([FromBody] CreateProjectRequest request)
         {

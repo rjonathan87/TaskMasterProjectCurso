@@ -1,27 +1,26 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Serilog;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 using System.Text;
-using TaskMaster.Application.DTOs;
 using TaskMaster.Application.Features;
 using TaskMaster.Application.Interfaces;
 using TaskMaster.Application.Mappings;
+using TaskMaster.Application.Services;
 using TaskMaster.Domain.Entities;
 using TaskMaster.Infrastructure.Data;
 using TaskMaster.Infrastructure.Repositories;
-using TaskMaster.Infrastructure.UnitOfWork;
-
-using Microsoft.OpenApi.Models;
-using TaskMaster.Application.Services;
 using TaskMaster.Infrastructure.Services;
-
+using TaskMaster.Infrastructure.UnitOfWork;
+using TaskMaster.Presentation;
 using TaskMaster.Presentation.Middleware;
-
-using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -33,48 +32,26 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-
-
-    builder.Host.UseSerilog(); // Usar Serilog para el host
-
-    // Add services to the container.
+    builder.Host.UseSerilog();
 
     builder.Services.AddControllers();
-
-    // --- Configuración de AutoMapper ---
     builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
-    // --- Configuración de API Versioning ---
     builder.Services.AddApiVersioning(options =>
     {
         options.DefaultApiVersion = new ApiVersion(1, 0);
         options.AssumeDefaultVersionWhenUnspecified = true;
         options.ReportApiVersions = true;
     });
-
     builder.Services.AddVersionedApiExplorer(options =>
     {
-        options.GroupNameFormat = "'v'VVV"; // Formato para los grupos de Swagger (ej. v1, v2)
+        options.GroupNameFormat = "'v'VVV";
         options.SubstituteApiVersionInUrl = true;
     });
 
-    // --- Configuración de Swagger/OpenAPI ---
+    builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
     builder.Services.AddSwaggerGen(options =>
     {
-        var provider = builder.Services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
-
-        foreach (var description in provider.ApiVersionDescriptions)
-        {
-            options.SwaggerDoc(description.GroupName,
-                new OpenApiInfo()
-                {
-                    Title = $"TaskMaster API {description.ApiVersion}",
-                    Version = description.ApiVersion.ToString(),
-                    Description = "API para la gestión de tareas empresariales."
-                });
-        }
-
-        // Añadir soporte para JWT en Swagger UI
         options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -86,32 +63,15 @@ try
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                },
+                new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } },
                 new string[] { }
             }
         });
     });
 
-    // --- Configuración de EF Core ---
-    if (builder.Environment.IsEnvironment("IntegrationTests"))
-    {
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseInMemoryDatabase("InMemoryDbForTesting"));
-    }
-    else
-    {
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-    }
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    // --- Configuración de ASP.NET Core Identity ---
     builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
     {
         options.User.RequireUniqueEmail = true;
@@ -124,13 +84,8 @@ try
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-    // --- Configuración de Autenticación JWT ---
     var jwtSettings = builder.Configuration.GetSection("Jwt");
-    var jwtKey = jwtSettings["Key"]!;
-    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("JWT Key used for validation: {JwtKey}", jwtKey);
-    var key = Encoding.UTF8.GetBytes(jwtKey); // Usar ! para indicar que no será null
-
+    var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]!);
     builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -150,42 +105,39 @@ try
         };
     });
 
-    // --- Registro de Repositorios y Unit of Work ---
     builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-    // --- Registro de Handlers de Casos de Uso ---
     builder.Services.AddScoped<CreateTaskCommandHandler>();
     builder.Services.AddScoped<GetTaskByIdQueryHandler>();
     builder.Services.AddScoped<UpdateTaskCommandHandler>();
     builder.Services.AddScoped<DeleteTaskCommandHandler>();
     builder.Services.AddScoped<GetAllTasksQueryHandler>();
-    builder.Services.AddScoped<CreateProjectCommandHandler>(); // Add this line
-
-
-    // Añadir registro de ILogger para los handlers que lo necesiten
-    builder.Services.AddLogging(); // Esto registra los servicios de logging
-
-    // --- Configuración de MemoryCache ---
-    builder.Services.AddMemoryCache();
-
-    // --- Registro de Servicios de Seguridad (para JWT) ---
+    builder.Services.AddScoped<CreateProjectCommandHandler>();
     builder.Services.AddScoped<ITokenService, TokenService>();
+
+    builder.Services.AddLogging();
+    builder.Services.AddMemoryCache();
 
     var app = builder.Build();
 
-    // Apply database migrations
+    // Apply pending database migrations at startup
     using (var scope = app.Services.CreateScope())
     {
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        Console.WriteLine("Applying database migrations...");
-        await dbContext.Database.MigrateAsync();
-        Console.WriteLine("Database migrations applied.");
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<ApplicationDbContext>();
+            await context.Database.MigrateAsync();
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred while migrating the database.");
+        }
     }
 
-    app.UseSerilogRequestLogging(); // Loggear las solicitudes HTTP
+    app.UseSerilogRequestLogging();
 
-    // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
@@ -197,47 +149,15 @@ try
                 options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
             }
         });
+        
+        await DataSeeder.SeedRolesAndAdminUser(app.Services);
     }
 
-    app.UseHttpsRedirection();
-
-    app.UseMiddleware<ExceptionHandlerMiddleware>(); // Añadir esta línea, preferiblemente al principio del pipeline
-
-    app.UseAuthentication(); // Debe ir antes de UseAuthorization
+    // app.UseHttpsRedirection();
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
+    app.UseAuthentication();
     app.UseAuthorization();
-
     app.MapControllers();
-
-
-    // --- Seed de Roles y Usuario Admin ---
-    using (var scope = app.Services.CreateScope())
-    {
-        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-
-        string[] roleNames = { "Admin", "User" };
-        IdentityResult roleResult;
-
-        foreach (var roleName in roleNames)
-        {
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
-            if (!roleExist)
-            {
-                roleResult = await roleManager.CreateAsync(new IdentityRole<Guid>(roleName));
-            }
-        }
-
-        var adminUser = await userManager.FindByNameAsync("admin");
-        if (adminUser == null)
-        {
-            adminUser = new User { UserName = "admin", Email = "admin@taskmaster.com" };
-            var createAdmin = await userManager.CreateAsync(adminUser, "Admin123!");
-            if (createAdmin.Succeeded)
-            {
-                await userManager.AddToRoleAsync(adminUser, "Admin");
-            }
-        }
-    }
 
     app.Run();
 }
@@ -250,4 +170,4 @@ finally
     Log.CloseAndFlush();
 }
 
-public partial class Program { } // Hacer la clase Program pública para pruebas
+public partial class Program { }
