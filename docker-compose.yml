@@ -1,42 +1,27 @@
 services:
   db:
-    image: postgres:15-alpine
-    restart: always
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
-      POSTGRES_DB: TaskMasterDb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: t2i86t7D9X
+      SA_PASSWORD: "t2i86t7D9X"
+      ACCEPT_EULA: "Y"
     ports:
-      - "5434:5432"
+      - "1433:1433"
     volumes:
-      - taskmaster_db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - sqlserver_data:/var/opt/mssql
 
-  api:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "5067:8080"
-    environment:
-      ASPNETCORE_URLS: "http://+:8080"
-      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=TaskMasterDb;Username=postgres;Password=t2i86t7D9X"
-      Jwt__Key: "EstaEsUnaClaveSuperSecretaYMuyLargaParaJWTQueDebeTenerAl menos32Caracteres"
-      Jwt__Issuer: "TaskMasterAPI"
-      Jwt__Audience: "TaskMasterUsers"
-      Jwt__ExpireMinutes: "60"
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: t2i86t7D9X
-      POSTGRES_DB: TaskMasterDb
-      ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db;Database=TaskMasterDb;User Id=sa;Password=t2i86t7D9X;TrustServerCertificate=True"
+      SA_PASSWORD: "t2i86t7D9X"
+      ASPNETCORE_URLS: "http://+:8080"
+      ASPNETCORE_ENVIRONMENT: Development
 
 volumes:
-  taskmaster_db_data:
+  sqlserver_data:
